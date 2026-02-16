@@ -150,7 +150,6 @@ fi
 
 info "adding brew taps..."
 TAPS=(
-  homebrew-ffmpeg/ffmpeg
   jayadamsmorgan/yatoro
   anomalyco/tap
 )
@@ -219,15 +218,15 @@ for cask in "${CASKS[@]}"; do
 done
 
 # ═══════════════════════════════════════════════════════════
-# 6. ffmpeg with drawtext support
+# 6. ffmpeg
 # ═══════════════════════════════════════════════════════════
 
-info "installing ffmpeg from tap..."
-if ! $DRY_RUN && brew list homebrew-ffmpeg/ffmpeg/ffmpeg &>/dev/null; then
-  skip "homebrew-ffmpeg/ffmpeg already installed"
+info "installing ffmpeg..."
+if ! $DRY_RUN && brew list ffmpeg &>/dev/null; then
+  skip "ffmpeg already installed"
 else
-  run brew install homebrew-ffmpeg/ffmpeg/ffmpeg
-  $DRY_RUN || ok "homebrew-ffmpeg/ffmpeg"
+  run brew install ffmpeg
+  $DRY_RUN || ok "ffmpeg"
 fi
 
 # ═══════════════════════════════════════════════════════════
