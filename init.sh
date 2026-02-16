@@ -222,12 +222,12 @@ done
 # 6. ffmpeg with drawtext support
 # ═══════════════════════════════════════════════════════════
 
-info "installing ffmpeg with libass (drawtext)..."
+info "installing ffmpeg from tap..."
 if ! $DRY_RUN && brew list homebrew-ffmpeg/ffmpeg/ffmpeg &>/dev/null; then
   skip "homebrew-ffmpeg/ffmpeg already installed"
 else
-  run brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-libass
-  $DRY_RUN || ok "ffmpeg with libass"
+  run brew install homebrew-ffmpeg/ffmpeg/ffmpeg
+  $DRY_RUN || ok "homebrew-ffmpeg/ffmpeg"
 fi
 
 # ═══════════════════════════════════════════════════════════
