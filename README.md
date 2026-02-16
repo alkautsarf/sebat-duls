@@ -101,6 +101,12 @@ After running `init.sh`:
 3. Generate SSH keys: `ssh-keygen -t ed25519`
 4. Update the Tailscale IP placeholder in `ssh/config`
 
+### Manual installs
+
+These apps aren't available via Homebrew and need to be installed manually:
+
+- [CatchMouse](https://github.com/literally-anything/CatchMouse) — move mouse cursor between monitors using keyboard shortcuts
+
 ## Fonts
 
 The script installs two font families:
