@@ -4,7 +4,7 @@
     "ENABLE_TOOL_SEARCH": "true",
     "MAX_MCP_OUTPUT_TOKENS": "50000",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-sonnet-4-5-20250929[1m]"
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-sonnet-4-5-20250929"
   },
   "permissions": {
     "allow": [
