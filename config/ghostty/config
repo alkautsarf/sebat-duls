@@ -1,0 +1,160 @@
+# ═══════════════════════════════════════════════════════════
+# Ghostty Configuration - elpabl0
+# ═══════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────
+# Font Settings
+# ─────────────────────────────────────────────────────────────
+font-family = "Ioskeley Mono"
+font-size = 17
+adjust-cell-height = 30%
+
+# ─────────────────────────────────────────────────────────────
+# Window Appearance
+# ─────────────────────────────────────────────────────────────
+background-opacity = 0.80
+window-padding-x = 0
+window-padding-y = 10,0
+window-padding-balance = true
+window-decoration = true
+window-save-state = always
+unfocused-split-opacity = 0.9
+
+# ─────────────────────────────────────────────────────────────
+# Colors - "coolnight" theme (from iTerm2)
+# ─────────────────────────────────────────────────────────────
+background = #010c18
+foreground = #ecdef5
+
+# Cursor (green)
+cursor-color = #38ff9c
+cursor-text = #000000
+cursor-style = block
+cursor-style-blink = false
+
+# Selection
+selection-background = #38ff9c
+selection-foreground = #000000
+
+# ANSI Colors (0-7: Normal)
+palette = 0=#0b3b61
+palette = 1=#ff3a3a
+palette = 2=#52ffd0
+palette = 3=#fff383
+palette = 4=#1376f9
+palette = 5=#c792ea
+palette = 6=#ff5ed4
+palette = 7=#16fda2
+
+# ANSI Colors (8-15: Bright)
+palette = 8=#62686d
+palette = 9=#ff54b0
+palette = 10=#73ffd8
+palette = 11=#fcf5ad
+palette = 12=#378dff
+palette = 13=#ae81ff
+palette = 14=#ff6ad7
+palette = 15=#60fcbf
+
+# ─────────────────────────────────────────────────────────────
+# Cursor Shader
+# ─────────────────────────────────────────────────────────────
+custom-shader = shaders/cursor_warp.glsl
+
+# ─────────────────────────────────────────────────────────────
+# macOS Specific
+# ─────────────────────────────────────────────────────────────
+macos-option-as-alt = true
+macos-titlebar-style = hidden
+macos-window-shadow = true
+macos-titlebar-proxy-icon = hidden
+
+# ─────────────────────────────────────────────────────────────
+# Quick Terminal (like iTerm2 Hotkey Window)
+# Press Ctrl+` for dropdown terminal
+# ─────────────────────────────────────────────────────────────
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-size = 40%
+quick-terminal-autohide = true
+quick-terminal-animation-duration = 0.15
+
+# ─────────────────────────────────────────────────────────────
+# Shell Integration
+# ─────────────────────────────────────────────────────────────
+shell-integration = detect
+shell-integration-features = no-cursor,sudo
+cursor-click-to-move = true
+
+# ─────────────────────────────────────────────────────────────
+# Terminal Behavior
+# ─────────────────────────────────────────────────────────────
+scrollback-limit = 10000000
+copy-on-select = clipboard
+clipboard-paste-protection = false
+mouse-hide-while-typing = true
+link-url = true
+confirm-close-surface = false
+
+# ─────────────────────────────────────────────────────────────
+# Keybindings - Splits (like iTerm2)
+# ─────────────────────────────────────────────────────────────
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+
+# Navigate splits
+keybind = cmd+alt+left=goto_split:left
+keybind = cmd+alt+right=goto_split:right
+keybind = cmd+alt+up=goto_split:up
+keybind = cmd+alt+down=goto_split:down
+
+# Resize splits
+keybind = cmd+ctrl+left=resize_split:left,20
+keybind = cmd+ctrl+right=resize_split:right,20
+keybind = cmd+ctrl+up=resize_split:up,20
+keybind = cmd+ctrl+down=resize_split:down,20
+
+# Split management
+keybind = cmd+shift+enter=toggle_split_zoom
+keybind = cmd+shift+e=equalize_splits
+
+# ─────────────────────────────────────────────────────────────
+# Keybindings - Tabs
+# ─────────────────────────────────────────────────────────────
+keybind = cmd+t=new_tab
+keybind = cmd+shift+left=previous_tab
+keybind = cmd+shift+right=next_tab
+keybind = cmd+1=goto_tab:1
+keybind = cmd+2=goto_tab:2
+keybind = cmd+3=goto_tab:3
+keybind = cmd+4=goto_tab:4
+keybind = cmd+5=goto_tab:5
+keybind = cmd+9=last_tab
+
+# ─────────────────────────────────────────────────────────────
+# Keybindings - Scrolling & Navigation
+# ─────────────────────────────────────────────────────────────
+keybind = cmd+up=scroll_to_top
+keybind = cmd+down=scroll_to_bottom
+keybind = page_up=scroll_page_up
+keybind = page_down=scroll_page_down
+keybind = cmd+shift+up=jump_to_prompt:-1
+keybind = cmd+shift+down=jump_to_prompt:1
+
+# ─────────────────────────────────────────────────────────────
+# Keybindings - Tmux Window Switching (Ctrl+Tab)
+# ─────────────────────────────────────────────────────────────
+keybind = ctrl+tab=text:\x1b[9;5u
+keybind = ctrl+shift+tab=text:\x1b[9;6u
+
+# ─────────────────────────────────────────────────────────────
+# Keybindings - Misc
+# ─────────────────────────────────────────────────────────────
+keybind = cmd+shift+c=copy_to_clipboard
+keybind = cmd+shift+v=paste_from_clipboard
+keybind = cmd+k=clear_screen
+keybind = cmd+comma=open_config
+keybind = cmd+shift+comma=reload_config
+keybind = cmd+ctrl+f=toggle_fullscreen
+keybind = cmd+shift+p=toggle_command_palette
+keybind = shift+enter=text:\x1b\r

@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+._*
+
+# Editors
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+
+# Backups
+*.bak
+*.orig
