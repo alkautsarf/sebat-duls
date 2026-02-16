@@ -101,6 +101,14 @@ After running `init.sh`:
 3. Generate SSH keys: `ssh-keygen -t ed25519`
 4. Update the Tailscale IP placeholder in `ssh/config`
 
+### Troubleshooting
+
+If oh-my-zsh warns about "insecure completion-dependent directories" (common when multiple Mac profiles share one Homebrew install):
+
+```bash
+compaudit | xargs chmod g-w,o-w
+```
+
 ### Manual installs
 
 These apps aren't available via Homebrew and need to be installed manually:
