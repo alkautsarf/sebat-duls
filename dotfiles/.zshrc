@@ -168,7 +168,6 @@ function claude() {
 
 
 alias qb="$HOME/Library/Python/3.14/bin/qutebrowser"
-source ~/.zshrc.qb
 export PYTHONPATH="/opt/homebrew/lib/python3.14/site-packages:$PYTHONPATH"
 
 # Added by Antigravity
