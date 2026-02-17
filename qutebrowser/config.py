@@ -104,7 +104,10 @@ c.completion.open_categories = ["searchengines", "quickmarks", "bookmarks", "his
 # elsummariz00r
 c.aliases['summarize'] = 'spawn --userscript summarize'
 c.aliases['resummarize'] = 'spawn --userscript resummarize'
+c.aliases['summarize-site'] = 'spawn --userscript summarize-site'
+c.aliases['resummarize-site'] = 'spawn --userscript resummarize-site'
 c.aliases['discuss'] = 'spawn --userscript discuss'
+c.aliases['discuss-new'] = 'spawn --userscript discuss-new'
 c.auto_save.session = True
 c.session.lazy_restore = True
 
