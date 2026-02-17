@@ -35,15 +35,15 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
       ahead=$(echo $ahead_behind | awk '{print $1}')
       behind=$(echo $ahead_behind | awk '{print $2}')
       if [ "$ahead" -gt 0 ] || [ "$behind" -gt 0 ]; then
-        printf "\033[38;5;33m↑%s ↓%s\033[0m" "$ahead" "$behind"
+        printf "\033[38;5;68m↑%s ↓%s\033[0m" "$ahead" "$behind"
       else
-        printf "\033[38;5;34m✓ clean\033[0m"
+        printf "\033[38;5;71m✓ clean\033[0m"
       fi
     else
-      printf "\033[38;5;34m✓ clean\033[0m"
+      printf "\033[38;5;71m✓ clean\033[0m"
     fi
   else
-    printf "\033[38;5;220m● %s changes\033[0m" "$changes"
+    printf "\033[38;5;179m● %s changes\033[0m" "$changes"
   fi
 fi
 
@@ -58,13 +58,13 @@ if [ "$TOTAL" -lt "$CTX_SIZE" ]; then
   PCT=$(((CTX_SIZE - TOTAL) * 100 / CTX_SIZE))
   REMAINING_K=$((REMAINING / 1000))
   if [ "$PCT" -gt 75 ]; then
-    printf "\033[38;5;34m%s%% (%sk)\033[0m" "$PCT" "$REMAINING_K"
+    printf "\033[38;5;71m%s%% (%sk)\033[0m" "$PCT" "$REMAINING_K"
   elif [ "$PCT" -gt 50 ]; then
-    printf "\033[38;5;226m%s%% (%sk)\033[0m" "$PCT" "$REMAINING_K"
+    printf "\033[38;5;222m%s%% (%sk)\033[0m" "$PCT" "$REMAINING_K"
   elif [ "$PCT" -gt 25 ]; then
     printf "\033[38;5;208m%s%% (%sk)\033[0m" "$PCT" "$REMAINING_K"
   else
-    printf "\033[38;5;196m%s%% (%sk)\033[0m" "$PCT" "$REMAINING_K"
+    printf "\033[38;5;167m%s%% (%sk)\033[0m" "$PCT" "$REMAINING_K"
   fi
 else
   TOTAL_K=$((TOTAL / 1000))
@@ -75,7 +75,7 @@ fi
 PRAGMA_MODE=$(jq -r '.mode // ""' ~/.pragma/config.json 2>/dev/null | tr '[:lower:]' '[:upper:]' | sed 's/X402/x402/')
 if [ -n "$PRAGMA_MODE" ]; then
   printf " \033[90m│\033[0m "
-  printf "\033[38;5;33m⚡%s\033[0m" "$PRAGMA_MODE"
+  printf "\033[38;5;68m⚡%s\033[0m" "$PRAGMA_MODE"
 fi
 
 # ══════════════════════════════════════
@@ -118,10 +118,10 @@ if [ -f "$CACHE_FILE" ]; then
   # Color: high usage = bad (inverted from context remaining)
   usage_color() {
     local pct=$1
-    if [ "$pct" -gt 90 ]; then echo "196"      # red
+    if [ "$pct" -gt 90 ]; then echo "203"      # salmon red
     elif [ "$pct" -gt 70 ]; then echo "208"     # orange
-    elif [ "$pct" -gt 50 ]; then echo "226"     # yellow
-    else echo "34"; fi                           # green
+    elif [ "$pct" -gt 50 ]; then echo "222"     # soft yellow
+    else echo "108"; fi                          # muted green
   }
 
   # Convert ISO 8601 UTC timestamp to local time (e.g., "2:00 PM")
