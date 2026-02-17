@@ -524,6 +524,6 @@ bind -n C-BTab previous-window
 
 # Disable pane border status (prevent agent teams from enabling it)
 set -g pane-border-status off
-set-hook -g after-set-option 'set -w pane-border-status off; set -pu pane-border-style; set -pu pane-active-border-style'
+set-hook -g after-set-option 'set -w pane-border-status off; set -p pane-border-style "fg=#1e2a36"; set -p pane-active-border-style "fg=#1e2a36"'
 set-hook -g after-kill-pane 'if-shell "[ #{window_panes} -eq 1 ]" "set -w pane-border-status off"'
 set-hook -g after-select-pane 'if-shell "[ #{window_panes} -eq 1 ]" "set -w pane-border-status off"'
