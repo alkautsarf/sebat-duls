@@ -512,6 +512,7 @@ safe_link "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 safe_link "$DOTFILES_DIR/claude/keybindings.json" "$HOME/.claude/keybindings.json"
 safe_link "$DOTFILES_DIR/claude/commands/commit.md" "$HOME/.claude/commands/commit.md"
 safe_link "$DOTFILES_DIR/claude/commands/tweet.md" "$HOME/.claude/commands/tweet.md"
+safe_link "$DOTFILES_DIR/claude/statusline.sh" "$HOME/.claude/statusline.sh"
 
 # ═══════════════════════════════════════════════════════════
 # 17. misc configs

@@ -100,7 +100,7 @@
     ],
     "deny": [],
     "ask": [],
-    "defaultMode": "plan"
+    "defaultMode": "default"
   },
   "hooks": {
     "Stop": [
@@ -165,40 +165,12 @@
         ]
       }
     ],
-    "PostToolUse": [
-      {
-        "matcher": "TeamCreate",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux set-option -w -t \"$TMUX_PANE\" pane-border-status off 2>/dev/null; tmux set-option -p -t \"$TMUX_PANE\" pane-border-style default 2>/dev/null; tmux set-option -p -t \"$TMUX_PANE\" pane-active-border-style default 2>/dev/null; true"
-          }
-        ]
-      },
-      {
-        "matcher": "TeamDelete",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux set-option -w -t \"$TMUX_PANE\" pane-border-status off 2>/dev/null; tmux set-option -p -t \"$TMUX_PANE\" pane-border-style default 2>/dev/null; tmux set-option -p -t \"$TMUX_PANE\" pane-active-border-style default 2>/dev/null; true"
-          }
-        ]
-      }
-    ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux set-option -w -t \"$TMUX_PANE\" pane-border-status off 2>/dev/null; tmux set-option -p -t \"$TMUX_PANE\" pane-border-style default 2>/dev/null; tmux set-option -p -t \"$TMUX_PANE\" pane-active-border-style default 2>/dev/null; true"
-          }
-        ]
-      }
-    ]
+    "PostToolUse": [],
+    "SubagentStop": []
   },
   "statusLine": {
     "type": "command",
-    "command": "INPUT=$(cat); MODEL_ID=$(echo \"$INPUT\" | jq -r '.model.id // \"unknown\"'); MODEL_NAME=$(echo \"$MODEL_ID\" | sed 's/claude-//' | cut -d'-' -f1 | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}'); MODEL_VER=$(echo \"$MODEL_ID\" | sed 's/claude-//' | sed 's/^[a-z]*-//' | cut -d'-' -f1,2 | tr '-' '.'); MODEL=\"$MODEL_NAME $MODEL_VER\"; TOTAL=$(echo \"$INPUT\" | jq -r '(.context_window.current_usage.input_tokens // 0) + (.context_window.current_usage.output_tokens // 0) + (.context_window.current_usage.cache_creation_input_tokens // 0) + (.context_window.current_usage.cache_read_input_tokens // 0)'); CTX_SIZE=$(echo \"$INPUT\" | jq -r '.context_window.context_window_size // 200000'); pwd | sed \"s|^$HOME|~|\" | awk '{printf \"\\033[38;5;37m%s\\033[0m\", $0}'; if git rev-parse --git-dir > /dev/null 2>&1; then printf \" \\033[90m│\\033[0m \"; BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null); printf \"\\033[38;5;208m%s\\033[0m\" \"$BRANCH\"; printf \" \\033[90m│\\033[0m \"; changes=$(git status --porcelain 2>/dev/null | wc -l | tr -d ' '); if [ \"$changes\" -eq 0 ]; then ahead_behind=$(git rev-list --left-right --count HEAD...@{u} 2>/dev/null); if [ -n \"$ahead_behind\" ]; then ahead=$(echo $ahead_behind | awk '{print $1}'); behind=$(echo $ahead_behind | awk '{print $2}'); if [ \"$ahead\" -gt 0 ] || [ \"$behind\" -gt 0 ]; then printf \"\\033[38;5;33m↑%s ↓%s\\033[0m\" \"$ahead\" \"$behind\"; else printf \"\\033[38;5;34m✓ clean\\033[0m\"; fi; else printf \"\\033[38;5;34m✓ clean\\033[0m\"; fi; else printf \"\\033[38;5;220m● %s changes\\033[0m\" \"$changes\"; fi; fi; printf \" \\033[90m│\\033[0m \"; printf \"\\033[38;5;141m%s\\033[0m\" \"$MODEL\"; printf \" \\033[90m│\\033[0m \"; if [ \"$TOTAL\" -lt \"$CTX_SIZE\" ]; then REMAINING=$((CTX_SIZE - TOTAL)); PCT=$(((CTX_SIZE - TOTAL) * 100 / CTX_SIZE)); REMAINING_K=$((REMAINING / 1000)); if [ \"$PCT\" -gt 75 ]; then printf \"\\033[38;5;34m%s%% (%sk)\\033[0m\" \"$PCT\" \"$REMAINING_K\"; elif [ \"$PCT\" -gt 50 ]; then printf \"\\033[38;5;226m%s%% (%sk)\\033[0m\" \"$PCT\" \"$REMAINING_K\"; elif [ \"$PCT\" -gt 25 ]; then printf \"\\033[38;5;208m%s%% (%sk)\\033[0m\" \"$PCT\" \"$REMAINING_K\"; else printf \"\\033[38;5;196m%s%% (%sk)\\033[0m\" \"$PCT\" \"$REMAINING_K\"; fi; else TOTAL_K=$((TOTAL / 1000)); printf \"\\033[38;5;247m%sk tokens\\033[0m\" \"$TOTAL_K\"; fi; PRAGMA_MODE=$(jq -r '.mode // \"\"' ~/.pragma/config.json 2>/dev/null | tr '[:lower:]' '[:upper:]' | sed 's/X402/x402/'); if [ -n \"$PRAGMA_MODE\" ]; then printf \" \\033[90m│\\033[0m \"; printf \"\\033[38;5;33m⚡%s\\033[0m\" \"$PRAGMA_MODE\"; fi"
+    "command": "bash ~/.claude/statusline.sh"
   },
   "enabledPlugins": {
     "document-skills-docx@awesome-claude-skills": true,
