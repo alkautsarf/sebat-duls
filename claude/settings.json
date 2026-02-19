@@ -4,7 +4,7 @@
     "ENABLE_TOOL_SEARCH": "true",
     "MAX_MCP_OUTPUT_TOKENS": "50000",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-sonnet-4-5-20250929"
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-sonnet-4-6"
   },
   "permissions": {
     "allow": [
@@ -112,7 +112,7 @@
           },
           {
             "type": "command",
-            "command": "INPUT=$(cat) && TRANSCRIPT=$(echo \"$INPUT\" | jq -r '.transcript_path // empty') && CWD=$(echo \"$INPUT\" | jq -r '.cwd // empty') && REPO=$(basename \"$CWD\") && TMUX_WIN=$(tmux display-message -t \"$TMUX_PANE\" -p '#I' 2>/dev/null) && PREFIX=\"[$REPO${TMUX_WIN:+ | w$TMUX_WIN}]\" && sleep 1 && MSG=$(tail -100 \"$TRANSCRIPT\" 2>/dev/null | jq -r 'select(.type==\"assistant\") | .message.content[] | select(.type==\"text\") | .text' 2>/dev/null | tail -1 | head -c 120) && echo \"$PREFIX ${MSG:-elpabl0, your turn}\" > /tmp/claude-notif-msg.txt"
+            "command": "INPUT=$(cat) && CWD=$(printf '%s' \"$INPUT\" | jq -r '.cwd // empty') && REPO=$(basename \"$CWD\") && TMUX_WIN=$(tmux display-message -t \"$TMUX_PANE\" -p '#I' 2>/dev/null) && PREFIX=\"[$REPO${TMUX_WIN:+ | w$TMUX_WIN}]\" && MSG=$(printf '%s' \"$INPUT\" | jq -r '.last_assistant_message // empty' | tail -c 150 | sed 's/^[^ ]* //') && echo \"$PREFIX ${MSG:-elpabl0, your turn}\" > /tmp/claude-notif-msg.txt"
           }
         ]
       }
@@ -140,7 +140,7 @@
           },
           {
             "type": "command",
-            "command": "INPUT=$(cat) && CWD=$(echo \"$INPUT\" | jq -r '.cwd // empty') && REPO=$(basename \"$CWD\") && TMUX_WIN=$(tmux display-message -t \"$TMUX_PANE\" -p '#I' 2>/dev/null) && PREFIX=\"[$REPO${TMUX_WIN:+ | w$TMUX_WIN}]\" && MSG=$(echo \"$INPUT\" | jq -r '.message // empty') && echo \"$PREFIX ${MSG:-Claude needs your attention}\" > /tmp/claude-notif-msg.txt"
+            "command": "INPUT=$(cat) && CWD=$(printf '%s' \"$INPUT\" | jq -r '.cwd // empty') && REPO=$(basename \"$CWD\") && TMUX_WIN=$(tmux display-message -t \"$TMUX_PANE\" -p '#I' 2>/dev/null) && PREFIX=\"[$REPO${TMUX_WIN:+ | w$TMUX_WIN}]\" && MSG=$(printf '%s' \"$INPUT\" | jq -r '.message // empty') && echo \"$PREFIX ${MSG:-Claude needs your attention}\" > /tmp/claude-notif-msg.txt"
           }
         ]
       }
@@ -177,7 +177,7 @@
     "document-skills-pdf@awesome-claude-skills": true,
     "supabase@claude-plugins-official": false,
     "ralph-wiggum@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": false,
     "swift-lsp@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
     "pragma@pragma-marketplace": true
